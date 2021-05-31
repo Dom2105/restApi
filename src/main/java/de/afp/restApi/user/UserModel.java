@@ -35,7 +35,10 @@ public class UserModel implements Serializable {
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
+        Integer pwhash = pw.hashCode();
+
+        String stingHash = pwhash.toString();
+        this.pw = stingHash;
     }
 
     public void setUserId(int userId) {
