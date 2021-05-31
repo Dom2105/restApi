@@ -15,6 +15,7 @@ public class NewsModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
     private int newsId;
     @Column(columnDefinition = "varchar(25)")
     private String titel;

@@ -23,7 +23,7 @@ public class NewsService {
         return NEWSREPO.save(news);
     }
 
-    public NewsModel newsUpdate(NewsModel news) {
+    public NewsModel newsUpdate(NewsModel news) throws Exception {
         return NEWSREPO.save(news);
     }
 

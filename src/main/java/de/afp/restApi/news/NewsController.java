@@ -38,14 +38,16 @@ public class NewsController {
     }
 
     @PutMapping(path = "/update")
-    public ResponseEntity<NewsModel> newsUpadta(@RequestBody NewsModel news) {
-        NewsModel n = NEWSSERVICE.newsAnlegen(news);
+    public ResponseEntity<NewsModel> newsUpadta(@RequestBody NewsModel news) throws Exception {
+        NewsModel n = NEWSSERVICE.newsUpdate(news);
         return new ResponseEntity<>(n, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<?> newsLoeschen(@PathVariable("id") int id) {
-        NEWSSERVICE.newsLoeschen(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> newsLoeschen(@PathVariable("id") int id) {
+
+        String text = NEWSSERVICE.newsLoeschen(id);
+
+        return new ResponseEntity<>(text, HttpStatus.OK);
     }
 }
