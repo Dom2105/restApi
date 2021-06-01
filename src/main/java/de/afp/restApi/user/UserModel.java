@@ -1,13 +1,18 @@
 package de.afp.restApi.user;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import de.afp.restApi.news.NewsModel;
 
 @Entity
 @Table(name = "user")
@@ -21,6 +26,8 @@ public class UserModel implements Serializable {
     private String email;
     @Column(name = "password", columnDefinition = "varchar(50)")
     private String pw;
+    @OneToMany(mappedBy = "user")
+    private Set<NewsModel> news;
 
     public UserModel() {
     }
@@ -28,6 +35,14 @@ public class UserModel implements Serializable {
     public UserModel(String email, String pw) {
         this.email = email;
         setPw(pw);
+    }
+
+    public void setNews(Set<NewsModel> news) {
+        this.news = news;
+    }
+
+    public Set<NewsModel> getNews() {
+        return news;
     }
 
     public void setEmail(String email) {

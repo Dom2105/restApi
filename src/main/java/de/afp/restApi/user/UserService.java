@@ -1,6 +1,7 @@
 package de.afp.restApi.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,10 @@ public class UserService {
 
     public void userLoeschen(int userId) {
         USERREPO.deleteById(userId);
+    }
+
+    public Optional<UserModel> findeUser(int id) {
+        return USERREPO.findById(id);
     }
 
 }

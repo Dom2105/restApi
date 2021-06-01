@@ -1,6 +1,7 @@
 package de.afp.restApi.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,12 @@ public class UserController {
     public ResponseEntity<UserModel> userLoeschen(@PathVariable("id") int userId) {
         USERSERVICE.userLoeschen(userId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/one/{id}")
+    public ResponseEntity<Optional<UserModel>> findeUser(@PathVariable("id") int id) {
+        Optional<UserModel> u = USERSERVICE.findeUser(id);
+        return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
 }
