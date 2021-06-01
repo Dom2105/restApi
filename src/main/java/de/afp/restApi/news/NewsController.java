@@ -56,4 +56,10 @@ public class NewsController {
         NewsModel n = NEWSSERVICE.titelSuche(titel);
         return new ResponseEntity<>(n, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/userNews/{id}")
+    public ResponseEntity<List<NewsModel>> userNews(@PathVariable("id") int id) {
+        List<NewsModel> nl = NEWSSERVICE.alleUserNews(id);
+        return new ResponseEntity<>(nl, HttpStatus.OK);
+    }
 }

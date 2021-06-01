@@ -27,6 +27,10 @@ public class NewsService {
         return NEWSREPO.save(news);
     }
 
+    public List<NewsModel> alleUserNews(int id) {
+        return NEWSREPO.findNewsByUser(id);
+    }
+
     public NewsModel titelSuche(String titel) {
         NewsModel ret = new NewsModel();
         for (NewsModel news : alleNews()) {
