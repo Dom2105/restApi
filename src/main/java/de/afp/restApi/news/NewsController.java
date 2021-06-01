@@ -50,4 +50,10 @@ public class NewsController {
 
         return new ResponseEntity<>(text, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/findByTitel/{titel}")
+    public ResponseEntity<NewsModel> findeTitel(@PathVariable("titel") String titel) {
+        NewsModel n = NEWSSERVICE.titelSuche(titel);
+        return new ResponseEntity<>(n, HttpStatus.OK);
+    }
 }

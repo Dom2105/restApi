@@ -20,13 +20,13 @@ public class NewsModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false, nullable = false)
-    private int newsId;
+    private int newsId; // 0
     @Column(columnDefinition = "varchar(25)")
-    private String titel;
-    private String text;
+    private String titel; // null
+    private String text; // null
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private UserModel user;
+    private UserModel user; // null
 
     public NewsModel() {
     }

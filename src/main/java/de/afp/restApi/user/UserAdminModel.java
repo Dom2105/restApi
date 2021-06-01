@@ -1,7 +1,5 @@
 package de.afp.restApi.user;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,7 +14,7 @@ import de.afp.restApi.news.NewsModel;
 
 @Entity
 @Table(name = "user")
-public class UserModel implements Serializable {
+public class UserAdminModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,23 +27,16 @@ public class UserModel implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<NewsModel> news;
 
-    public UserModel() {
+    public UserAdminModel() {
     }
 
-    public UserModel(String email, String pw) {
+    public UserAdminModel(String email, String pw) {
         this.email = email;
-        setPw(pw);
+        this.pw = pw;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPw(String pw) {
-        Integer pwhash = pw.hashCode();
-
-        String stingHash = pwhash.toString();
-        this.pw = stingHash;
+    public int getUserId() {
+        return this.userId;
     }
 
     public void setUserId(int userId) {
@@ -53,28 +44,43 @@ public class UserModel implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
-    /*
-     * public String getPw() { return pw; }
-     */
-
-    public String holePw() {
-        return pw;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getPw() {
+        return this.pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
     }
 
     public void setNews(Set<NewsModel> news) {
         this.news = news;
     }
 
-    @Override
-    public String toString() {
-        return "{" + " userId='" + getUserId() + "'" + ", email='" + getEmail() + "'" + ", pw='" + "'" + "}";
+    public UserAdminModel userId(int userId) {
+        setUserId(userId);
+        return this;
+    }
+
+    public UserAdminModel email(String email) {
+        setEmail(email);
+        return this;
+    }
+
+    public UserAdminModel pw(String pw) {
+        setPw(pw);
+        return this;
+    }
+
+    public UserAdminModel news(Set<NewsModel> news) {
+        setNews(news);
+        return this;
     }
 
 }

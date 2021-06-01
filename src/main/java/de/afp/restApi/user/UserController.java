@@ -22,6 +22,9 @@ public class UserController {
     private final UserService USERSERVICE;
 
     @Autowired
+    private UserAdminRepo admin;
+
+    @Autowired
     public UserController(UserService USERSERVICE) {
         this.USERSERVICE = USERSERVICE;
     }
@@ -41,6 +44,7 @@ public class UserController {
     @PutMapping(path = "/update")
     public ResponseEntity<UserModel> update(@RequestBody UserModel userModel) {
         UserModel u = USERSERVICE.userUpdate(userModel);
+        u.holePw();
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
@@ -54,6 +58,12 @@ public class UserController {
     public ResponseEntity<Optional<UserModel>> findeUser(@PathVariable("id") int id) {
         Optional<UserModel> u = USERSERVICE.findeUser(id);
         return new ResponseEntity<>(u, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/admin/all")
+    public ResponseEntity<List<?>> adminUser() {
+        List<UserAdminModel> ul = admin.findAll();
+        return new ResponseEntity<List<?>>(ul, HttpStatus.OK);
     }
 
 }

@@ -27,6 +27,16 @@ public class NewsService {
         return NEWSREPO.save(news);
     }
 
+    public NewsModel titelSuche(String titel) {
+        NewsModel ret = new NewsModel();
+        for (NewsModel news : alleNews()) {
+            if (news.getTitel().equals(titel)) {
+                ret = news;
+            }
+        }
+        return ret;
+    }
+
     public String newsLoeschen(int id) {
         String text;
 
