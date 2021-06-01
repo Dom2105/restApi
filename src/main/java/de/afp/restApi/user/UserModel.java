@@ -37,14 +37,6 @@ public class UserModel implements Serializable {
         setPw(pw);
     }
 
-    public void setNews(Set<NewsModel> news) {
-        this.news = news;
-    }
-
-    public Set<NewsModel> getNews() {
-        return news;
-    }
-
     public void setEmail(String email) {
         this.email = email;
     }
