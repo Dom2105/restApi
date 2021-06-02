@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,12 +52,9 @@ public class UserController {
     @GetMapping(path = "/uN")
     public ResponseEntity<List<UserNewsModel>> alleUserMitNews() {
         List<UserModel> ul = USERSERVICE.alleUser();
-        UserNewsModel uModel = new UserNewsModel();
         List<UserNewsModel> lun = new ArrayList<>();
         for (UserModel u : ul) {
-            uModel.setUser(u);
-            uModel.setNews(news.alleUserNews(u.getUserId()));
-            lun.add(uModel);
+            lun.add(new UserNewsModel(u, news.alleUserNews(u.getUserId())));
         }
 
         return new ResponseEntity<>(lun, HttpStatus.OK);
@@ -88,4 +86,24 @@ public class UserController {
         return new ResponseEntity<List<?>>(ul, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/string")
+    public ResponseEntity<String> strings() {
+        String vorname = "Dominic";
+        char c = vorname.charAt(1);
+        int stringLaenge = vorname.length();// int
+        int index = vorname.indexOf("in");// int
+        String sub = vorname.substring(2, 5); // string
+        String up = vorname.toUpperCase();// string
+        String low = vorname.toLowerCase(); // string
+        boolean eq = up.equals(low);// false
+        boolean eqI = up.equalsIgnoreCase(low); // true
+        boolean start = vorname.startsWith("D"); // true
+        boolean con = vorname.contains("x"); // false
+        String newVorname = vorname.replace("i", "I"); // DomInIc
+        String untrim = " a b c ";
+        String trimd = untrim.trim(); // "a b c"
+        String nachname = new String("Rittig");
+        vorname = vorname + " " + nachname;
+        return new ResponseEntity<>(vorname, HttpStatus.OK);
+    }
 }

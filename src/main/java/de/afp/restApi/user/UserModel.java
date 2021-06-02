@@ -72,14 +72,9 @@ public class UserModel implements Serializable {
         this.news = news;
     }
 
-    public List<NewsModel> getNews() {
-        return news;
-    }
-
     @Override
     public String toString() {
-        return "{" + " userId='" + getUserId() + "'" + ", email='" + getEmail() + "'" + ", news='" + getNews() + "'"
-                + "}";
+        return "{" + " userId='" + getUserId() + "'" + ", email='" + getEmail() + "'" + ", news='" + "'" + "}";
     }
 
 }
