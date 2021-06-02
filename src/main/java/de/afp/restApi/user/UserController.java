@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.afp.restApi.news.NewsService;
+
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
@@ -23,6 +25,8 @@ public class UserController {
 
     @Autowired
     private UserAdminRepo admin;
+
+    private NewsService news;
 
     @Autowired
     public UserController(UserService USERSERVICE) {
@@ -38,7 +42,9 @@ public class UserController {
     @GetMapping(path = "/all")
     public ResponseEntity<List<UserModel>> alleUser() {
         List<UserModel> ul = USERSERVICE.alleUser();
-        return new ResponseEntity<List<UserModel>>(ul, HttpStatus.OK);
+
+        return new ResponseEntity<>(ul, HttpStatus.OK);
+
     }
 
     @PutMapping(path = "/update")
