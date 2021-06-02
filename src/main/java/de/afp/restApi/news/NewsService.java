@@ -57,7 +57,7 @@ public class NewsService {
         if (rest != null) {
             mehererNews(new NewsModel(oldTitle, rest, news.getUser()));
         }
-
+        teil = 1;
         return NEWSREPO.save(news);
     }
 
