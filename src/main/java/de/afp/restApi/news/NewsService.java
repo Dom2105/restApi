@@ -19,24 +19,46 @@ public class NewsService {
         return NEWSREPO.findAll();
     }
 
-    /* public static int teil = 1; */
+    public static int teil = 1;
 
     public NewsModel newsAnlegen(NewsModel news) {
-        int teil = 1;
-        if (news.getText().length() <= 255) {
-            return NEWSREPO.save(news);
+
+        if (news.getText().length() <= 255 && teil == 1) {
+            return eineNews(news);
         } else {
-            String oldTitle = news.getTitel();
-            String newTitle = news.getTitel() + " Teil-" + teil++;
-            String newText = news.getText().substring(0, 255);
-            String rest = news.getText().substring(255);
-            news.setTitel(newTitle);
-            news.setText(newText);
-            /* NewsModel news2 = new NewsModel(); */
-            newsAnlegen(new NewsModel(oldTitle, rest, news.getUser()));
-            return NEWSREPO.save(news);
+            return mehererNews(news);
         }
 
+    }
+
+    public NewsModel eineNews(NewsModel news) {
+        return NEWSREPO.save(news);
+    }
+
+    public NewsModel mehererNews(NewsModel news) {
+
+        String oldTitle = news.getTitel();
+
+        String newTitle = news.getTitel() + " Teil-" + teil;
+        teil = teil + 1;
+        String newText;
+        String rest = null;
+
+        if (news.getText().length() <= 255) {
+            newText = news.getText();
+
+        } else {
+            newText = news.getText().substring(0, 255);
+            rest = news.getText().substring(255);
+        }
+
+        news.setTitel(newTitle);
+        news.setText(newText);
+        if (rest != null) {
+            mehererNews(new NewsModel(oldTitle, rest, news.getUser()));
+        }
+
+        return NEWSREPO.save(news);
     }
 
     public NewsModel newsUpdate(NewsModel news) throws Exception {
