@@ -1,5 +1,6 @@
 package de.afp.restApi.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class UserController {
 
     @Autowired
     private UserAdminRepo admin;
-
+    @Autowired
     private NewsService news;
 
     @Autowired
@@ -44,6 +45,21 @@ public class UserController {
         List<UserModel> ul = USERSERVICE.alleUser();
 
         return new ResponseEntity<>(ul, HttpStatus.OK);
+
+    }
+
+    @GetMapping(path = "/uN")
+    public ResponseEntity<List<UserNewsModel>> alleUserMitNews() {
+        List<UserModel> ul = USERSERVICE.alleUser();
+        UserNewsModel uModel = new UserNewsModel();
+        List<UserNewsModel> lun = new ArrayList<>();
+        for (UserModel u : ul) {
+            uModel.setUser(u);
+            uModel.setNews(news.alleUserNews(u.getUserId()));
+            lun.add(uModel);
+        }
+
+        return new ResponseEntity<>(lun, HttpStatus.OK);
 
     }
 
