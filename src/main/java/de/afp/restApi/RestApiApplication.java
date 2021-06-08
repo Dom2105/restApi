@@ -8,8 +8,24 @@ das Klassen immer mit einem Großbuchstaben beginnen.
 Der Klassen Körper beginnt mit "{" und endet "}". Der Gesammte Code der Klasse, muss in den
 Klassen Körper. 
 
-Die Klasse dessen Namen mit der Datei übereinstimmt MUSS Public sein. Public bedeutet für alle,
-im Projekt sichtbar. 
+Die Klasse dessen Namen mit der Datei übereinstimmt MUSS Public sein. 
+
+Bei Public handelt es sich um einen sogenannten Modifizerer. Es gibt mehrere von diesen.
+Private: Sind nur in der Klasse, in der sie erstellt worden sind sichtbar.
+
+Protected: Sind nur im selben Package(ordner!) und in allen abgeleiteten Klassen sichtbar.
+
+Default(kein Modifizierer!): Sind nur im selben Package sichtbar.
+
+Public: Sind im ganzen Projektsichtbar, das heißt auch in anderen Packages. 
+
+Static: Durch static wird direkt auf die Variable zugegriffen, ohne eine Instanz auf die Klasse
+bilden zu müssen. D.H. Der zugewiesene wert wird gesetzt und bleibt bestehen, bis sie geändert wird, 
+egal in welchen objekt oder wo auch immer sie aufgerufen wird.
+
+final: Dadurch wird eine Variable zu einer Konstanten. Konstanten haben einen Festen wert.
+Sprich ist ihr einmal ein wert zugewiesen worden kann dieser nicht mehr geändert werden. 
+Der Konstantenname wird laut Konvention komplett in GroßBuchstabengeschrieben. Z.B. "NAME".
 
 Eine Java Datei, darf mehrere Klassen entahlten, diese dürfen nicht Public sein!! und sind nur von 
 der Public Klasse, der Datei nutzbar. 
@@ -57,8 +73,8 @@ public class RestApiApplication {
 		Dollerzeichen beginnen. Die obengenannte Konvention sollte aber trotzdem eingehalten werden.
 		Z.B. "$name", "_name".
 
-		Das Deklarieren, ist das zuweißen eines Wertes zu einer Variabel. Eingeleitet wird das zuweißen
-		immer durch ein einfaches "=". Sprich immer wenn wir nur ein "=" sehen findet eine zuweißung statt!
+		Das Deklarieren, ist das zuweißen eines Wertes zu einer Variabel. Eingeleitet wird das zuweisen
+		immer durch ein einfaches "=". Sprich immer wenn wir nur ein "=" sehen findet eine zuweisung statt!
 		In diesem fall wir der Variable der wert "Dom" zugewisen.
 
 		Das ende eines Befehls wird in Java immer mit einem ";" abgeschlossen.
@@ -73,6 +89,20 @@ public class RestApiApplication {
 
 	}
 	
+	/* 
+	OCA!
+	Methoden in Java bestehen aus einem Modifizierer, einem Rückgabetyp, einem Methodennamen, 
+	der Parameterliste und dem Methodenkörper. Der Rückgabetyp kann jeder Datentyp sein, wenn wir 
+	so einen angeben, muss die Methoden einen wert dieses Typen, in einem "return"-Statment 
+	zurückgeben. Wollen wir nichts zurückgeben, nutzen wir den Rückgabetype "void". Methodennamen dürfen mit einem unterstrich oder einem Buchstaben beginnen.
+	Hinter dem Methodennamen kommen "()", diese können leer sein, das würde heißen, beim aufrufe der
+	Methode müssen keine Parameter übergeben werden, oder die "()" sind mit einem oder mehreren 
+	Paramater befüllt, dies gleicht der Deklarierung von Variablen. Es wird ein Datentyp und ein 
+	Variablenname benötigt. Wenn wir mehrere haben werden diese mit einem Komma getrennt. Wird die 
+	Methode aufgerufen, müssen Paramter des richtigen types übergeben werden!
+	Die Parameter Variablen sind nur innerhalb der Methode nutzbar.
+	Im Methoden Körper kommt die Logik der Methode und am ende die rückgabe "return";
+	*/
 	public static void name(String[] ka, String... ka2) {
 		System.out.println(ka);
 		System.out.println(ka2);
