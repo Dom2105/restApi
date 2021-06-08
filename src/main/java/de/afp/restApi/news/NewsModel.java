@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import de.afp.restApi.user.UserModel;
 
+
 @Entity
 @Table(name = "news")
 public class NewsModel implements Serializable {
